@@ -1,0 +1,89 @@
+.calculator {
+    width: 300px;
+    margin: 100px auto;
+    padding: 10px;
+    border-radius: 20px;
+    border: 3px solid #000;
+    height: auto;
+    background-color: #333;/*rgb(214, 195, 230)*/
+    
+  }
+.display{
+   width: 295px;
+   display: grid;
+   height: 80px;
+   margin-bottom: 5px;
+   margin-right: 20px;
+   margin-top: 8px;
+   font-size: 100px;
+   background-color: rgba(199, 209, 209, 0.266);
+   
+  }
+  
+  .keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    
+    gap: 5px;
+   
+    
+  }
+  
+  button {
+    padding: 10px;
+    flex:1;
+    margin:3px;
+    font-size: 20px;
+    margin-right:5px;
+    border-radius:20px;
+   /* background-color: transparent;*/
+  }
+  
+  button:hover {
+    background-color: lightgray;
+  }
+  button.add{
+    background-color: #e3d1e3;
+  }
+  button.modulo{
+    background-color: #e3d1e3;
+  }
+  button.divi{
+    background-color: #e3d1e3;
+  }
+  button.mul{
+    background-color: #e3d1e3;
+  }
+  button.sub{
+    background-color: #e3d1e3;
+  }
+  button.equal{
+    background-color: #e3d1e3;
+    width:195%
+    
+  }
+  button.medium{
+    width: 100px;
+  }
+ button.sqrt{
+  background-color: #e3d1e3;
+ }
+.disp{
+  background-color: aliceblue;
+  border-radius: 5px;
+  border: none;
+  
+  font-size: 20px;
+}
+button.add:hover,
+button.sub:hover,
+button.mul:hover,
+button.divi:hover,
+button.sqrt:hover,
+button.modulo:hover,
+button.equal:hover{
+  background-color: darkgray;
+}
+body{
+  background-color:rgb(135, 223, 243);
+}

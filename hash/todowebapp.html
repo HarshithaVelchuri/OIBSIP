@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do Web App</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #938fc3;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        margin-top: 30px;
+        margin-top: 100px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(10, 9, 9, 0.1);
+    }
+    .task-list {
+        list-style-type: none;
+        padding: 0;
+        color: darkred;
+    }
+    .task-lists {
+        list-style-type: none;
+        padding: 0;
+        color: green;
+    }
+
+    .task-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    .pending h2{
+        color: rgb(244, 4, 4);
+    }
+
+    .task-item:last-child {
+        border-bottom: none;
+    }
+
+    .task-item input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+    .completedtasks {
+        margin-top: 20px;
+        color: green;
+    }
+
+    .completedtasks h2 {
+        color: #2847cf;
+    }
+
+    h1 {
+        text-align: center;
+        color: #242424;
+    }
+
+    input[type="text"] {
+        width: 95%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 30px;
+        
+    }
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #03168e;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #8ec491;
+    }
+
+  
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>To Do Application</h1>
+    <input type="text" id="taskInput" placeholder="Enter a new task">
+    <button onclick="addTask()">Add Task</button>
+    <div class="pending">
+    <h2>Pending Tasks</h2>
+    <ul id="pendingTasks" class="task-list">
+    </ul>
+    </div>
+    <div class="completedtasks">
+        <h2>Completed Tasks</h2>
+        <ul id="completedTasks" class="task-lists">
+        </ul>
+    </div>
+</div>
+
+<script>
+    function addTask() {
+        var taskInput = document.getElementById("taskInput");
+        var taskText = taskInput.value.trim();
+        if (taskText === "") {
+            alert("Please enter a task!");
+            return;
+        }
+
+        var task = {
+            text: taskText,
+            timestamp: new Date().toLocaleString(),
+            completed: false
+        };
+
+        var listItem = document.createElement("li");
+        listItem.className = "task-item";
+        listItem.innerHTML = `
+            <input type="checkbox" onclick="toggleComplete(this)">
+            <span>${task.text}</span>
+            <span>${task.timestamp}</span>
+            <button onclick="deleteTask(this)">Delete</button>
+            <button onclick="editTask(this)">Edit</button>
+        `;
+
+        document.getElementById("pendingTasks").appendChild(listItem);
+        taskInput.value = "";
+    }
+
+    function toggleComplete(checkbox) {
+        var listItem = checkbox.parentNode;
+        var tasksContainer = listItem.parentNode.id === "pendingTasks" ? "completedTasks" : "pendingTasks";
+        document.getElementById(tasksContainer).appendChild(listItem);
+        checkbox.disabled = true;
+        listItem.classList.toggle("completed");
+    }
+
+    function deleteTask(button) {
+        var listItem = button.parentNode;
+        listItem.parentNode.removeChild(listItem);
+    }
+
+    function editTask(button) {
+        var listItem = button.parentNode;
+        var taskText = listItem.querySelector("span").innerText;
+        var newText = prompt("Edit Task:", taskText);
+        if (newText !== null && newText.trim() !== "") {
+            listItem.querySelector("span").innerText = newText.trim();
+        }
+    }
+</script>
+</body>
+</html>
